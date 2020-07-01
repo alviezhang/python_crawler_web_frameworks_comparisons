@@ -62,12 +62,14 @@ All tests run 3 times.
 #### Not reuse connections
 
 | Single req  | Flask | Starlette | tornado |
+| ----------- | ----- | --------- | ------- |
 | RPS         | 131.6 | 516.8     | 521.1   |
 | Latency     | 3.71s | 5.46s     | 4.98s   |
 | Connections | 500   | 3000      | 1000    |
 | Threads     | 50    | 300       | 100     |
 
 | Multi req   | Flask | Starlette | tornado |
+| ----------- | ----- | --------- | ------- |
 | RPS         | 131.6 | 382.0     | 169.0   |
 | Latency     | 3.71s | 7.12s     | 5.60s   |
 | Connections | 500   | 3000      | 1000    |
@@ -76,12 +78,14 @@ All tests run 3 times.
 #### Reuse connections
 
 | Single req  | Flask | Starlette | tornado |
+| ----------- | ----- | --------- | ------- |
 | RPS         | 148.1 | 744.9s    | 713.0   |
 | Latency     | 3.11s | 3.75s     | 3.91s   |
 | Connections | 500   | 3000      | 3000    |
 | Threads     | 50    | 300       | 300     |
 
 | Multi req   | Flask | Starlette | tornado |
+| ----------- | ----- | --------- | ------- |
 | RPS         | 230.4 | 548.5     | 493.2   |
 | Latency     | 2.10s | 2.63s     | 2.89s   |
 | Connections | 500   | 1500      | 1500    |
