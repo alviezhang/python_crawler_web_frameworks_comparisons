@@ -54,10 +54,10 @@ You need to adjust parameter for `-c` concurrent connections option, and find a 
 ### Test Result
 
 OS: Archlinux host in KVM
-CPU: 4 x AMD Ryzen 3 PRO 3200G with Radeon Vega Graphics (1 Socket)
-Memory: 8 GiB
 
-All tests run 3 times.
+CPU: 4 x AMD Ryzen 3 PRO 3200G with Radeon Vega Graphics (1 Socket)
+
+Memory: 8 GiB
 
 #### Not reuse connections
 
