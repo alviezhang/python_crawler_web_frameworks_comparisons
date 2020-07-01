@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
+from tornado.platform.asyncio import AsyncIOMainLoop
+import asyncio
 import uvloop
-uvloop.install()
+
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+AsyncIOMainLoop().install()
+
 import aiohttp
 import random
 import tornado.httpserver
@@ -23,7 +28,7 @@ class JsonHandler(tornado.web.RequestHandler):
         self.write(json.dumps(data))
 
 
-_connector = aiohttp.TCPConnector(ttl_dns_cache=300, limit=10000)
+_connector = aiohttp.TCPConnector(ttl_dns_cache=300, limit=10000, force_close=True)
 
 async def fetch(session, url):
     async with session.get(url) as response:
@@ -78,6 +83,4 @@ if __name__ == "__main__":
     server.bind(options.port)
     server.start(1)
 
-    ioloop = tornado.ioloop.IOLoop.current()
-    ioloop.start()
-
+    asyncio.get_event_loop().run_forever()

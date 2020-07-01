@@ -8,7 +8,7 @@ from starlette.applications import Starlette
 from starlette.responses import UJSONResponse
 from starlette.routing import Route
 
-_connector = aiohttp.TCPConnector(ttl_dns_cache=300, limit=10000)
+_connector = aiohttp.TCPConnector(ttl_dns_cache=300, limit=10000, force_close=True)
 
 
 async def fetch(session, url):
