@@ -9,9 +9,9 @@ compare performance between different frameworks.
 
 ### Frameworks
 
-- starlette
-- Flask
-- tornado
+- [Flask](flask.pocoo.org/)
+- [starlette](https://www.starlette.io/)
+- [tornado](https://www.tornadoweb.org/en/stable/)
 
 ### Test items
 
