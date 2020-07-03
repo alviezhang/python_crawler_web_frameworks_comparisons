@@ -1,10 +1,9 @@
 import uvloop
+
 uvloop.install()
 
-import asyncio
 import os
-from operator import itemgetter
-from urllib.parse import parse_qs
+from parse import parse_chinese_name
 
 import aiohttp
 from starlette.applications import Starlette
@@ -25,7 +24,8 @@ async def single_database_query(request):
     url = f'http://{GO_SLEEP_ADDRESS}/?seconds={seconds}'
     async with aiohttp.ClientSession(connector=_connector, connector_owner=False) as session:
         body = await fetch(session, url)
-    return UJSONResponse(body)
+
+    return UJSONResponse([body] + parse_chinese_name())
 
 
 async def multiple_database_queries(request):
@@ -46,8 +46,8 @@ async def multiple_database_queries(request):
 
 
 routes = [
-        Route('/single', single_database_query),
-        Route('/multiple', multiple_database_queries),
-        ]
+    Route('/single', single_database_query),
+    Route('/multiple', multiple_database_queries),
+]
 
 app = Starlette(routes=routes)

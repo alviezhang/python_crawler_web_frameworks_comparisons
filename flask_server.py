@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 from meinheld import patch
+
 patch.patch_all()
 
 import json
 import os
 from email.utils import formatdate
 
-import requests
-import requests.sessions
 import requests.adapters
 from flask import Flask, make_response
 
@@ -20,6 +19,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 adapter = requests.adapters.HTTPAdapter(pool_connections=10000, pool_maxsize=10000)
 session = requests.session()
 session.mount('http', adapter)
+
 
 # views
 
@@ -53,7 +53,7 @@ def multiple():
     response = session.get(url)
     body_list.append(response.content)
 
-    response = session.get(url, params={'r':response.content[0]})
+    response = session.get(url, params={'r': response.content[0]})
     body_list.append(response.content)
     return json_response(b'\n'.join(body_list).decode('utf-8'))
 
@@ -68,4 +68,3 @@ except ImportError:
 # entry point for debugging
 if __name__ == "__main__":
     app.run(debug=False)
-

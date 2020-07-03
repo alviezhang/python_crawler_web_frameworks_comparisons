@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-from tornado.platform.asyncio import AsyncIOMainLoop
 import asyncio
+
 import uvloop
+from tornado.platform.asyncio import AsyncIOMainLoop
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 AsyncIOMainLoop().install()
 
 import aiohttp
 import os
-import random
 import tornado.httpserver
 from tornado.httpclient import AsyncHTTPClient
 import tornado.ioloop
@@ -69,12 +69,12 @@ def make_app():
     return tornado.web.Application([
         (r"/single", SingleQueryHandler),
         (r"/multiple", MultipleQueriesHandler),
-        ],
+    ],
         template_path="templates"
-        )
+    )
+
 
 app = make_app()
-
 
 if __name__ == "__main__":
     options.parse_command_line()
